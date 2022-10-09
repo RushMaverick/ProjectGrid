@@ -5,29 +5,38 @@ using UnityEngine.Tilemaps;
 
 public class TileLogic : MonoBehaviour
 {
-    private Renderer renderer;
-    public Camera cam;
-    
+    [SerializeField] private string selectableTag = "Selectable";
+    [SerializeField] private string unitTag = "Unit";
+
+    private Transform _target;
+
     void Start() {
-        renderer = GetComponent<Renderer>();
     }
 
-    void Update() {
-        if (Input.GetMouseButtonDown(0)) { //When Mouse Button 0 is pressed a Ray is shot from the camera towards the point the mouse point to. 
-            Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+    private void Update() {
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition); //Sets a ray with the mouse as an input. 
+        RaycastHit hit;
 
-            if (Physics.Raycast(ray, out RaycastHit hitInfo)) {
-                Debug.Log(hitInfo.collider.gameObject.GetComponent<Rigidbody>());
+        if (_target != null){ //Sets color to default and resets target to null.
+            var targetRenderer = _target.GetComponent<Renderer>();
+            targetRenderer.material.color = Color.white;
+            _target = null;
+        }
+
+        if (Physics.Raycast(ray, out hit)) { // Detects colliders if anything is between the camera and the mouse. 
+            var target = hit.transform;
+
+            if (target.CompareTag(selectableTag)){ //Checks if the target currently is with the "Selectable" tag.
+                var targetRenderer = target.GetComponent<Renderer>();
+                if (targetRenderer != null){ //Logic for when something is within the raycast.
+                    if (Input.GetKeyDown("mouse 0")){
+                        Debug.Log(target);
+                    }
+                    targetRenderer.material.color = Color.red;
+                    _target = target;
+                }
             }
         }
-    }
-
-    private void OnMouseEnter() {
-        renderer.material.color = Color.red;
-    }
-
-    private void OnMouseExit() {
-        renderer.material.color = Color.white;
     }
      
     //Color tile that is selected. 
