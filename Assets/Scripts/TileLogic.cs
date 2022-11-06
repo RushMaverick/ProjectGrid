@@ -42,9 +42,9 @@ public class TileLogic : MonoBehaviour
                     targetRenderer.material.color = Color.red;
                     _target = target;
 
-                    if (Input.GetKeyDown("mouse 0") && _target.GetComponent<CollisionDetector>().isColliding){
-                        Debug.Log("I am now selected.");
-                         _target.GetComponent<CollisionDetector>().isColliding = false;
+                    if (Input.GetKeyDown("space") && _target.GetComponent<CollisionDetector>().isColliding){
+                        Debug.Log("Unit is now selected.");
+                        //Set isSelected to true in UnitLogic script on CapKun object
                     }
                 }
             }

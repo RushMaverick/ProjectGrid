@@ -21,6 +21,7 @@ public class CollisionDetector : MonoBehaviour
     public void OnTriggerStay(Collider other) {
         if (other.gameObject.tag == unitTag){
             isColliding = true;
+            Debug.Log(other.gameObject.name);
             //Send info to UnitLogic script.
         }
     }
