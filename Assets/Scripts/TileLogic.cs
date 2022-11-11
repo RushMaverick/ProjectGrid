@@ -6,7 +6,7 @@ using UnityEngine.Tilemaps;
 public class TileLogic : MonoBehaviour
 {
     [SerializeField] private string selectableTag = "Selectable";
-    //[SerializeField] private string unitTag = "Unit";
+    [SerializeField] private string unitTag = "Unit";
     [SerializeField] GameObject GridController;
     [SerializeField] Transform _target;
     [SerializeField] GameObject targetUnit;
@@ -43,7 +43,6 @@ public class TileLogic : MonoBehaviour
                     _target = target;
 
                     if (Input.GetKeyDown("space") && _target.GetComponent<CollisionDetector>().isColliding){
-                        Debug.Log("Unit is now selected.");
                         //Set isSelected to true in UnitLogic script on CapKun object
                     }
                 }

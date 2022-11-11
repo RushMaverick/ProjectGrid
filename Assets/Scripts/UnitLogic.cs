@@ -18,6 +18,7 @@ public class UnitLogic : MonoBehaviour
     }
 
     void MovementLogic(){
+        Debug.Log("Unit is now selected.");
         renderer.material.color = Color.red;
         isSelected = true;
     }
