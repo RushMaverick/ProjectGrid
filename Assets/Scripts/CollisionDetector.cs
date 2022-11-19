@@ -7,21 +7,19 @@ public class CollisionDetector : MonoBehaviour
     [SerializeField] private string unitTag = "Unit";
 
     public bool isColliding;
+    GameObject thisUnit;
 
-    void Start()
-    {
-    }
-
-    // Update is called once per frame
     void Update()
     {
-
+        if (Input.GetMouseButtonDown(0) && isColliding){
+            thisUnit.GetComponent<UnitLogic>().SelectedLogic();
+        }
     }
 
     public void OnTriggerStay(Collider other) {
         if (other.gameObject.tag == unitTag){
             isColliding = true;
-            //Send info to UnitLogic script.
+            thisUnit = other.gameObject;
         }
     }
 }

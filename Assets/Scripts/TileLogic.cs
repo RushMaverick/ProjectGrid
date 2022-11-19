@@ -41,10 +41,6 @@ public class TileLogic : MonoBehaviour
                 if (targetRenderer != null){ //Logic for when something is within the raycast.
                     targetRenderer.material.color = Color.red;
                     _target = target;
-
-                    if (Input.GetKeyDown("space") && _target.GetComponent<CollisionDetector>().isColliding){
-                        //Set isSelected to true in UnitLogic script on CapKun object
-                    }
                 }
             }
         }

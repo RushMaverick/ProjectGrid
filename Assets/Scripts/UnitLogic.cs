@@ -4,22 +4,23 @@ using UnityEngine;
 
 public class UnitLogic : MonoBehaviour
 {
+    public CollisionDetector currentTile;
     public Renderer renderer;
-    bool isSelected;
+    public int isSelected;
+
     void Start()
     {
         renderer = GetComponent<Renderer>();
-        isSelected = false;
+        isSelected = 0;
     }
 
-    void Update()
-    {
-        
-    }
-
-    void MovementLogic(){
-        Debug.Log("Unit is now selected.");
-        renderer.material.color = Color.red;
-        isSelected = true;
+    public void SelectedLogic(){
+        //Waits for the next clicked point and sets it's transform to that point.
+        if (isSelected == 1)
+            Debug.Log("The value is now: " + isSelected);
+        if (isSelected == 0){
+            Debug.Log("The value is now: " + isSelected);
+            isSelected++;
+        }
     }
 }
