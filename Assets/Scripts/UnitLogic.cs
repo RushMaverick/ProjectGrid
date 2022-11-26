@@ -14,13 +14,26 @@ public class UnitLogic : MonoBehaviour
         isSelected = 0;
     }
 
-    public void SelectedLogic(){
+    public void SelectedLogic(CollisionDetector tile){
         //Waits for the next clicked point and sets it's transform to that point.
-        if (isSelected == 1)
-            Debug.Log("The value is now: " + isSelected);
-        if (isSelected == 0){
-            Debug.Log("The value is now: " + isSelected);
-            isSelected++;
+        if (currentTile == tile)
+        {
+            if (isSelected == 1)
+            {
+                Debug.Log("The value is now: " + isSelected);
+                isSelected++;
+            }
+            if (isSelected == 0)
+            {
+                Debug.Log("The value is now: " + isSelected);
+                isSelected++;
+            }
+            if (isSelected == 2)
+            {
+                Debug.Log("The value is now: " + isSelected);
+                isSelected--;
+                isSelected--;
+            }
         }
     }
 }

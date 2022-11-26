@@ -11,17 +11,11 @@ public class TileLogic : MonoBehaviour
     [SerializeField] Transform _target;
     [SerializeField] GameObject targetUnit;
 
-    public GameObject unit;
-
-    private void Awake() {
-    
-    }
-
     private void Start() {
         _target = null;
     }
 
-    private void Update() {
+    public void Update() {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition); //Sets a ray with the mouse as an input. 
         RaycastHit hit;
 
