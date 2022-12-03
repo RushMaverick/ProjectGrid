@@ -6,33 +6,35 @@ public class UnitLogic : MonoBehaviour
 {
     public CollisionDetector currentTile;
     public Renderer renderer;
-    public int isSelected;
+    public ClickLevel isSelected;
+
+    public enum ClickLevel: int{
+        UNCLICKED, 
+        CLICKED,
+        DOUBLECLICKED
+    }
 
     void Start()
     {
         renderer = GetComponent<Renderer>();
-        isSelected = 0;
+        isSelected = ClickLevel.UNCLICKED;
     }
 
     public void SelectedLogic(CollisionDetector tile){
         //Waits for the next clicked point and sets it's transform to that point.
         if (currentTile == tile)
         {
-            if (isSelected == 1)
-            {
-                Debug.Log("The value is now: " + isSelected);
-                isSelected++;
+            if (isSelected == ClickLevel.UNCLICKED){
+                Debug.Log(isSelected);
+                isSelected = ClickLevel.CLICKED;
             }
-            if (isSelected == 0)
-            {
-                Debug.Log("The value is now: " + isSelected);
-                isSelected++;
+            else if (isSelected == ClickLevel.CLICKED){
+                Debug.Log(isSelected);
+                isSelected = ClickLevel.DOUBLECLICKED;
             }
-            if (isSelected == 2)
-            {
-                Debug.Log("The value is now: " + isSelected);
-                isSelected--;
-                isSelected--;
+            else if (isSelected == ClickLevel.DOUBLECLICKED){
+                Debug.Log(isSelected);
+                isSelected = ClickLevel.UNCLICKED;
             }
         }
     }

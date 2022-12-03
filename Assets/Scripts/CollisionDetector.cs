@@ -9,10 +9,16 @@ public class CollisionDetector : MonoBehaviour
     public bool isColliding;
     
     GameObject thisUnit;
+    GameObject gameController;
 
     void Update()
     {
+
+    }
+
+    private void OnMouseOver() {
         if (this.isColliding && Input.GetMouseButtonDown(0)){
+            Debug.Log(this.gameObject.name);
             thisUnit.GetComponent<UnitLogic>().SelectedLogic(this);
         }   
     }
